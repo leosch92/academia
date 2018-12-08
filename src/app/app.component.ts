@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'academia';
+
+  
+  public get dias() : string[] {
+    return ['segunda', 'quarta', 'sexta'];
+  }
+  
 }
