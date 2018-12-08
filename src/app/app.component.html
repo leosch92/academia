@@ -1,4 +1,9 @@
-<h1>App Academia</h1>
-<div *ngFor="let dia of dias">
-    <app-dia-de-treino [dia]='dia'></app-dia-de-treino>
+<div class="container">
+    <h1>App Academia</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let dia of dias">
+            <app-dia-de-treino [dia]='dia'></app-dia-de-treino>
+        </div>
+    </div>
 </div>
