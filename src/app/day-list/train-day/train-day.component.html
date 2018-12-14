@@ -1,4 +1,10 @@
-<h2>{{ capitalize(day) }} - {{ grupamento }}</h2>
+<h2> 
+    {{ trainDay.weekDay }} - 
+    <span *ngFor="let grouping of trainDay.groupings; last as isLast">
+        <span *ngIf="isLast; else notLast">{{ grouping }}</span>
+        <ng-template #notLast>{{ grouping }} / </ng-template>
+    </span>
+</h2>
 <table class="table">
     <thead>
         <th>Exercício</th>
@@ -7,7 +13,7 @@
         <th>Peso</th>
     </thead>
     <tbody>
-        <tr *ngFor="let exercise of exercises">
+        <tr *ngFor="let exercise of trainDay.exercises">
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.seriesQuantity }}</td>
             <td>{{ exercise.repetitions.min }} a {{ exercise.repetitions.max }}</td>

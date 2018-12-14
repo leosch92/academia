@@ -1,16 +1,5 @@
 <div class="row">
-  <!-- <div class="col-md-12">
-    <ul class="list-inline">
-      <li *ngFor="let trainDay of trainDays" class="panel panel-default">
-        <div class="panel-heading">{{ trainDay.weekDay }}</div>
-        <div class="panel-body">
-          <p *ngFor="let grouping of trainDay.groupings"> {{ grouping }}</p>
-        </div>
-        <div *ngFor="let grouping of trainDay.groupings" class="panel-body">{{ grouping }}</div>
-      </li>
-    </ul>
-  </div> -->
-  <div *ngFor="let trainDay of trainDays" style="width: 13%; display: block; margin-right: 1%; float: left">
+  <div *ngFor="let trainDay of trainDays" class="day-box" (click)="onDayClick(trainDay)">
     <div class="panel panel-default" style="min-height: 11em">
       <div class="panel-heading">{{ trainDay.weekDay }}</div>
       <div class="panel-body">
@@ -18,5 +7,7 @@
       </div>
     </div>
   </div>
-
+</div>
+<div class="row" *ngIf="isTrainDayFilled(shownTrainDay)">
+  <app-train-day [trainDay]="shownTrainDay"></app-train-day>
 </div>
