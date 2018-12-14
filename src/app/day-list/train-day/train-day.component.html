@@ -1,8 +1,8 @@
 <h2> 
     {{ trainDay.weekDay }} - 
     <span *ngFor="let grouping of trainDay.groupings; last as isLast">
-        <span *ngIf="isLast; else notLast">{{ grouping }}</span>
         <ng-template #notLast>{{ grouping }} / </ng-template>
+        <span *ngIf="isLast; else notLast">{{ grouping }}</span>
     </span>
 </h2>
 <table class="table">
