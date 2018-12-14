@@ -2,12 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { DiaDeTreinoComponent } from './dia-de-treino/dia-de-treino.component';
+import { HeaderComponent } from './header/header.component';
+import { DayListComponent } from './day-list/day-list.component';
+import { TrainDayComponent } from './train-day/train-day.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DiaDeTreinoComponent
+    HeaderComponent,
+    DayListComponent,
+    TrainDayComponent
   ],
   imports: [
     BrowserModule

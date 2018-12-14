@@ -1,0 +1,17 @@
+<h2>{{ capitalize(day) }} - {{ grupamento }}</h2>
+<table class="table">
+    <thead>
+        <th>Exercício</th>
+        <th>Nº. Séries</th>
+        <th>Nº. Repetições</th>
+        <th>Peso</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exercise of exercises">
+            <td>{{ exercise.name }}</td>
+            <td>{{ exercise.seriesQuantity }}</td>
+            <td>{{ exercise.repetitions.min }} a {{ exercise.repetitions.max }}</td>
+            <td>{{ exercise.weight? exercise.weight : '' }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -10,7 +10,7 @@ export class AppComponent {
 
   
   public get dias() : string[] {
-    return ['segunda', 'quarta', 'sexta'];
+    return ['segunda'];
   }
   
 }
