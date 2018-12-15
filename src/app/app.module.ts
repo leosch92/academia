@@ -5,16 +5,20 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DayListComponent } from './day-list/day-list.component';
 import { TrainDayComponent } from './day-list/train-day/train-day.component';
+import { AddExerciseComponent } from './day-list/train-day/add-exercise/add-exercise.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DayListComponent,
-    TrainDayComponent
+    TrainDayComponent,
+    AddExerciseComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

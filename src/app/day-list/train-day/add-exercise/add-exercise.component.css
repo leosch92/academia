@@ -1,0 +1,14 @@
+.btn {
+    border: none;
+    background-color: white;
+    float: right;
+    padding: 0;
+}
+
+.green {
+    color: green;
+}
+
+.side-input {
+    margin-left: 0.4em;
+}
