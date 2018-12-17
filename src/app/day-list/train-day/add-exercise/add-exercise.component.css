@@ -1,14 +1,12 @@
-.btn {
-    border: none;
-    background-color: white;
+.add-btn {
     float: right;
-    padding: 0;
 }
 
-.green {
-    color: green;
+.icon {
+    color: gray;
 }
 
-.side-input {
-    margin-left: 0.4em;
+.full-input {
+    width: 100%;
+    margin-bottom: 1em;
 }

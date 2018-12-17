@@ -1,51 +1,66 @@
 <div class="row">
-  <button class="btn" (click)="onAddClick()">
-    <fa-icon class="fa-2x green" [icon]="faPlusSquare"></fa-icon>
-  </button>
+  <div class="col-md-12">
+      <a href="#" (click)="onAddClick()" class="add-btn icon">
+        <fa-icon class="fa-3x" [icon]="faPlusSquare"></fa-icon>
+      </a>
+  </div>
 </div>
 
 <form *ngIf="adding">
-  <div class="panel panel-default" style="padding: 1.5em 0.5em;">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="col-md-12">
-          <label for="exerciseInput">Exercício</label>
-        </div>
-        <div class="col-md-12">
-          <input #exerciseInput type="text" style="width: 80%">
-        </div>
+  <div class="row panel panel-default" style="padding: 1.5em 0.5em;">
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <label for="exerciseInput">Exercício</label>
       </div>
-      <div class="col-md-2">
-        <div class="col-md-12">
-          <label for="seriesNumberInput">Nº. Séries</label>
-        </div>
-        <div class="col-md-12">
-          <input #seriesNumberInput type="text" maxlength="2" size="2">
-        </div>
+      <div class="col-md-12">
+        <input #exerciseInput class="full-input" type="text">
       </div>
-      <div class="col-md-4">
-        <div class="col-md-12">
-          <label for="repsNumber" style="font-weight: bold; text-align: center;">Nº Repetições</label>
-        </div>
-        <div #repsNumber class="col-md-12">
-          <div class="col-md-5">
-            <label for="minRepsInput">Mínimo</label>
-            <input #minRepsInput type="text" maxlength="2" size="2" class="side-input">
-          </div>
-          <div class="col-md-5">
-            <label for="maxRepsInput">Máximo</label>
-            <input #maxRepsInput type="text" maxlength="2" size="2" class="side-input">
-          </div>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <label for="seriesNumberInput">Nº. Séries</label>
       </div>
-      <div class="col-md-2">
-        <div class="col-md-12">
-          <label for="weightInput">Nº. Peso</label>
-        </div>
-        <div class="col-md-12">
-          <input #weightInput type="text" maxlength="3" size="3">
-        </div>
+      <div class="col-md-12">
+        <input #seriesNumberInput class="full-input" type="text" maxlength="2">
       </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <label for="repsNumber" style="font-weight: bold; text-align: center;">Nº Repetições</label>
+      </div>
+        <div class="col-md-6">
+          <input 
+            #repsNumber 
+            #repsNumberMin 
+            type="text" 
+            maxlength="2" 
+            class="full-input"
+            placeholder="Mínimo"
+          >
+        </div>
+        <div class="col-md-6">
+          <input 
+            #repsNumber 
+            #repsNumberMax 
+            type="text" 
+            maxlength="2" 
+            class="full-input"
+            placeholder="Máximo"
+          >
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <label for="weightInput">Nº. Peso</label>
+      </div>
+      <div class="col-md-12">
+        <input #weightInput type="text" maxlength="3" class="full-input">
+      </div>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+      <button class="btn" style="font-size: 18px" (click)="onAddItem()">
+        Adicionar
+      </button>
     </div>
   </div>
 </form>

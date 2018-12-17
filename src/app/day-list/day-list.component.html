@@ -8,6 +8,4 @@
     </div>
   </div>
 </div>
-<div class="row" *ngIf="isTrainDayFilled(shownTrainDay)">
-  <app-train-day [trainDay]="shownTrainDay"></app-train-day>
-</div>
+<app-train-day *ngIf="isTrainDayFilled(shownTrainDay)" [trainDay]="shownTrainDay"></app-train-day>
