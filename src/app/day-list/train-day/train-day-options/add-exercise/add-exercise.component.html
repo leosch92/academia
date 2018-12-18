@@ -1,0 +1,50 @@
+<form class="card" style="padding: 1.5em; margin-bottom: 2em;">
+
+    <div class="row">
+      <div class="col">
+          <label for="exerciseInput">Exercício</label>
+          <input #exerciseInput class="full-input" type="text">
+      </div>
+      <div class="col">
+          <label for="seriesNumberInput">Nº. Séries</label>
+          <input #seriesNumberInput class="full-input" type="text" maxlength="2">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+          <label for="repsNumber">Nº Repetições</label>
+          <div class="row">
+              <div class="col">
+                <input 
+                  #repsNumber 
+                  #repsNumberMin 
+                  type="text" 
+                  maxlength="2" 
+                  class="full-input"
+                  placeholder="Mínimo"
+                >
+              </div>
+              <div class="col">
+                <input 
+                  #repsNumber 
+                  #repsNumberMax 
+                  type="text" 
+                  maxlength="2" 
+                  class="full-input"
+                  placeholder="Máximo"
+                >
+              </div>
+          </div>
+      </div>
+      <div class="col">
+        <label for="weightInput">Nº. Peso</label>
+        <input #weightInput type="text" maxlength="3" class="full-input">
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn" style="font-size: 18px; margin: auto;" (click)="onAddItem()">Adicionar</button>
+    </div>
+
+</form>

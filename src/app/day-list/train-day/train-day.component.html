@@ -1,3 +1,4 @@
+<hr>
 <h2> 
     {{ trainDay.weekDay }} - 
     <span *ngFor="let grouping of trainDay.groupings; last as isLast">
@@ -5,16 +6,20 @@
         <span *ngIf="isLast; else notLast">{{ grouping }}</span>
     </span>
 </h2>
-<app-add-exercise (exerciseAdded)="onExerciseAdded($event)"></app-add-exercise>
+<app-train-day-options [trainDayId]="trainDay.id"></app-train-day-options>
 <table class="table table-striped table-bordered">
     <thead>
-        <th>Exercício</th>
-        <th>Nº. Séries</th>
-        <th>Nº. Repetições</th>
-        <th>Peso</th>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Exercício</th>
+            <th scope="col">Nº. Séries</th>
+            <th scope="col">Nº. Repetições</th>
+            <th scope="col">Peso</th>
+        </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let exercise of trainDay.exercises">
+        <tr *ngFor="let exercise of trainDay.exercises; index as i">
+            <th scope="row">{{ i + 1 }}</th>
             <td>{{ exercise.name }}</td>
             <td>{{ exercise.seriesQuantity }}</td>
             <td>{{ exercise.repetitions.min }} a {{ exercise.repetitions.max }}</td>

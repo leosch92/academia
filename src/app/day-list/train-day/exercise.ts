@@ -3,12 +3,15 @@ import { format } from "util";
 
 export class Exercise {
 
+    private static _id: number = 0;
+    id:  number;
     name: string;
     seriesQuantity: number;
     repetitions: Repetitions;
     weight: number = 0;
 
     constructor(name: string, seriesQuantity: number, repetitions: Repetitions, weight?: number){
+        this.id = ++Exercise._id;
         this.name = name;
         this.seriesQuantity = seriesQuantity;
         this.repetitions = {
