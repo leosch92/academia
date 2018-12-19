@@ -15,7 +15,16 @@ export class TrainDayService{
         this.trainDays.find( td => td.id === trainDayId).exercises.push(exercise);
     }
 
+    deleteExercise(trainDayId: number, exercise: Exercise): void {
+      let exercises = this.trainDays.find(td => td.id === trainDayId).exercises;
+      const index: number = exercises.indexOf(exercise);
+      if (index !== -1){
+        exercises.splice(index, 1);
+      }
+    } 
+
     save(){
       localStorage.setItem(this.trainDayKeyJSON, JSON.stringify(this.trainDays));
     }
+
 }

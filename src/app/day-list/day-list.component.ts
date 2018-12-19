@@ -24,6 +24,6 @@ export class DayListComponent implements OnInit{
   }
 
   isTrainDayFilled(trainDay: TrainDay): boolean{
-    return trainDay && trainDay.exercises.length != 0
+    return trainDay && trainDay.groupings.length != 0;
   }
 }
