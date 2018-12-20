@@ -1,0 +1,11 @@
+<div class="row" style="margin-bottom: 1em;">
+  <div class="col-4">
+    Semanas de treino completadas:
+  </div>
+  <div class="col-1" *ngFor="let week of totalWeeks" style="margin: auto;">
+    <del *ngIf="completedWeeks.includes(week); else notCompleted">{{ week }}</del>
+    <ng-template #notCompleted> 
+        {{ week }}
+    </ng-template>
+  </div>
+</div>

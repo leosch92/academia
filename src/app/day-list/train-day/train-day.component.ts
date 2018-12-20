@@ -1,8 +1,9 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TrainDay } from 'src/app/shared/train-day.model';
-import { faTrash, IconDefinition, faEdit, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { TrainDayService } from 'src/app/services/train-day.service';
 import { Exercise } from './exercise';
+import { SelectItem } from 'primeng/components/common/selectitem';
+import { Groupings } from 'src/app/shared/constants/groupings.constant';
 
 
 @Component({
@@ -10,40 +11,30 @@ import { Exercise } from './exercise';
   templateUrl: './train-day.component.html',
   styleUrls: ['./train-day.component.css']
 })
-export class TrainDayComponent{
-
-  readonly faTrash: IconDefinition = faTrash;
-  readonly faEdit: IconDefinition = faEdit;
-  readonly faCheckSquare: IconDefinition = faCheckSquare;
-  exerciseEditIndex: number = -1;
+export class TrainDayComponent implements OnInit{
 
   @Input() trainDay: TrainDay;
+  groupingOptions: SelectItem[] = [];
 
   constructor(private trainDayService: TrainDayService) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.trainDay.previousValue != changes.trainDay.currentValue){
-      this.exerciseEditIndex = -1;
-    }
+  ngOnInit(): void {
+    this.initGroupings();
   }
 
-  onDeleteClick(exercise: Exercise){
+  initGroupings(): void {
+    Groupings.forEach( grp => {
+      this.groupingOptions.push(
+        {label: grp, value: grp}
+      )
+    })
+  }
+
+  onDeleteExercise(exercise: Exercise){
     this.trainDayService.deleteExercise(this.trainDay.id, exercise);
   }
 
-  onEditClick(index: number){
-    this.exerciseEditIndex = index;
-  }
-
-  onConfirmClick(){
-    this.exerciseEditIndex = -1;
-  }
-
-  getOptionsTextAlignStyle(index: number): string {
-    if (index === this.exerciseEditIndex){
-      return 'center';
-    } else {
-      return 'default';
-    }
+  diaDeFeira(): boolean {
+    return this.trainDay.weekDay !== 'Sábado' && this.trainDay.weekDay !== 'Domingo';
   }
 }

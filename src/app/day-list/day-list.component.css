@@ -1,7 +1,6 @@
 .day-box {
     width: 13%; 
-    display: block; 
-    margin-right: 1%; 
-    float: left;
+    display: inline-block; 
+    margin-right: 1%;
     cursor: pointer;
 }

@@ -1,0 +1,62 @@
+<table *ngIf="exercises.length != 0" class="table table-striped table-bordered">
+  <thead>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">Exercício</th>
+          <th scope="col">Nº. Séries</th>
+          <th scope="col">Nº. Repetições</th>
+          <th scope="col">Peso</th>
+          <th scope="col"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let exercise of exercises; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <ng-container *ngIf="i !== exerciseEditIndex; else edit">
+              <td>{{ exercise.name }}</td>
+              <td>{{ exercise.seriesQuantity }}</td>
+              <td>{{ exercise.repetitions.min }} a {{ exercise.repetitions.max }}</td>
+              <td>{{ exercise.weight? exercise.weight : '' }}</td>
+          </ng-container>
+          <ng-template #edit>
+              <td>
+                  <input type="text" [(ngModel)]="exercise.name" style="width: 90%">
+              </td>
+              <td>
+                  <input type="text" [(ngModel)]="exercise.seriesQuantity" size="2" maxlength="2">
+              </td>
+              <td>
+                  <input type="text" [(ngModel)]="exercise.repetitions.min" size="2" maxlength="2"> a 
+                  <input type="text" [(ngModel)]="exercise.repetitions.max" size="2" maxlength="2">
+              </td>
+              <td>
+                  <input type="text" [(ngModel)]="exercise.weight" size="4" maxlength="4">
+              </td>
+          </ng-template> 
+
+
+          <td style="width: 5em; text-align: center">
+              <ng-container *ngIf="i !== exerciseEditIndex; else confirm">
+                  <a 
+                      href="#/" 
+                      title="Deletar" 
+                      (click)="onDeleteClick(exercise)" 
+                      class="icon" 
+                      style="margin-right: 0.6em"
+                  >
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                  </a>
+                  <a href="#/" title="Editar" (click)="onEditClick(i)" class="icon">
+                      <fa-icon [icon]="faEdit"></fa-icon>
+                  </a>
+              </ng-container>
+              <ng-template #confirm>
+                  <a href="#/" title="Confirmar edição" (click)="onConfirmClick()" class="icon">
+                      <fa-icon class="fa-2x" [icon]="faCheckSquare"></fa-icon>
+                  </a>
+              </ng-template>
+
+          </td>
+      </tr>
+  </tbody>
+</table>

@@ -1,8 +1,5 @@
-.add-btn {
-    float: right;
-}
-
 .icon {
     color: gray;
     margin-left: 0.5em;
+    float: right;
 }
