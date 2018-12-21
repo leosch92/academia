@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainDay } from '../shared/train-day.model';
-import { TrainDayService } from '../services/train-day.service';
+import { TrainDaysService } from './train-days.service';
 
 @Component({
   selector: 'app-day-list',
   templateUrl: './day-list.component.html',
   styleUrls: ['./day-list.component.css'],
-  providers: [ TrainDayService ]
+  providers: [ TrainDaysService ]
 })
 export class DayListComponent implements OnInit{
   
   trainDays : TrainDay[] = [];
   shownTrainDay : TrainDay = null;
   
-  constructor(private trainDayService: TrainDayService) { }
+  constructor(private trainDaysService: TrainDaysService) { }
 
   ngOnInit() {
-    this.trainDays = this.trainDayService.trainDays;
+    this.trainDays = this.trainDaysService.getTrainDays();
   }
 
   onDayClick(trainDay: TrainDay) {

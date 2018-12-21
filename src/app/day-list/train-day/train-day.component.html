@@ -1,6 +1,6 @@
 <hr>
 <h2> 
-    {{ trainDay.weekDay }}<span *ngIf="diaDeFeira()">-feira</span>
+    {{ trainDay.weekDay }}<span *ngIf="!isWeekend()">-feira</span>
 </h2>
 
 <div style="padding-top: 1em; float: left">
@@ -9,11 +9,12 @@
         [options]="groupingOptions"
         [(ngModel)]="trainDay.groupings"
         selectedItemsLabel="{0} grupamentos selecionados"
+        (onChange)="onEditGroupings($event)"
     ></p-multiSelect>
 </div>
 <app-train-day-options [trainDayId]="trainDay.id"></app-train-day-options>
 
-<app-train-day-table 
+<app-train-day-table
+    [trainDayId]="trainDay.id"
     [exercises]="trainDay.exercises" 
-    (exerciseDeleted)="onDeleteExercise($event)"
 ></app-train-day-table>

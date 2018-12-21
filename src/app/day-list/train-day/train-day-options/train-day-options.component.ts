@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faPlusSquare, IconDefinition, faSave } from '@fortawesome/free-solid-svg-icons';
-import { TrainDayService } from 'src/app/services/train-day.service';
+import { TrainDaysService } from 'src/app/day-list/train-days.service';
 
 @Component({
   selector: 'app-train-day-options',
@@ -15,7 +15,7 @@ export class TrainDayOptionsComponent implements OnInit {
   faSave: IconDefinition = faSave;
   adding : boolean = false;
 
-  constructor(private trainDayService: TrainDayService) { }
+  constructor(private trainDaysService: TrainDaysService) { }
 
   ngOnInit() {
   }
@@ -25,6 +25,6 @@ export class TrainDayOptionsComponent implements OnInit {
   }
 
   onSaveClick(): void {
-    this.trainDayService.save();
+    this.trainDaysService.save();
   }
 }

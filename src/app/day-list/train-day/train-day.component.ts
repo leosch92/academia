@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TrainDay } from 'src/app/shared/train-day.model';
-import { TrainDayService } from 'src/app/services/train-day.service';
+import { TrainDaysService } from 'src/app/day-list/train-days.service';
 import { Exercise } from './exercise';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { Groupings } from 'src/app/shared/constants/groupings.constant';
@@ -16,10 +16,28 @@ export class TrainDayComponent implements OnInit{
   @Input() trainDay: TrainDay;
   groupingOptions: SelectItem[] = [];
 
-  constructor(private trainDayService: TrainDayService) { }
+  constructor(private trainDaysService: TrainDaysService) { }
 
   ngOnInit(): void {
     this.initGroupings();
+
+    this.trainDaysService.exerciseAdded.subscribe(
+      (newExercise: Exercise) => {
+        this.trainDay.exercises.push(newExercise);
+      }
+    );
+
+    this.trainDaysService.exerciseDeleted.subscribe(
+      (exsAfterDeletion: Exercise[]) => {
+        this.trainDay.exercises = exsAfterDeletion;
+      }
+    )
+
+    this.trainDaysService.exerciseEdited.subscribe(
+      (exsAfterEdition: Exercise[]) => {
+        this.trainDay.exercises = exsAfterEdition;
+      }
+    )
   }
 
   initGroupings(): void {
@@ -30,11 +48,11 @@ export class TrainDayComponent implements OnInit{
     })
   }
 
-  onDeleteExercise(exercise: Exercise){
-    this.trainDayService.deleteExercise(this.trainDay.id, exercise);
+  isWeekend(): boolean {
+    return this.trainDay.weekDay === 'Sábado' || this.trainDay.weekDay !== 'Domingo';
   }
 
-  diaDeFeira(): boolean {
-    return this.trainDay.weekDay !== 'Sábado' && this.trainDay.weekDay !== 'Domingo';
-  }
+  onEditGroupings(event: any): void {
+    this.trainDaysService.changeGroupings(this.trainDay.id, event.value);
+  }  
 }

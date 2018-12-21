@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { IconDefinition, faTrash, faEdit, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { Exercise } from '../exercise';
+import { TrainDaysService } from '../../train-days.service';
 
 @Component({
   selector: 'app-train-day-table',
@@ -9,16 +10,15 @@ import { Exercise } from '../exercise';
 })
 export class TrainDayTableComponent implements OnInit, OnChanges {
 
+  @Input() trainDayId: number;
   @Input() exercises: Exercise[];
-  @Output() exerciseEdited: EventEmitter<Exercise> = new EventEmitter<Exercise>();
-  @Output() exerciseDeleted: EventEmitter<Exercise> = new EventEmitter<Exercise>();
 
   readonly faTrash: IconDefinition = faTrash;
   readonly faEdit: IconDefinition = faEdit;
   readonly faCheckSquare: IconDefinition = faCheckSquare;
   exerciseEditIndex: number = -1;
 
-  constructor() { }
+  constructor(private trainDaysService: TrainDaysService) { }
 
   ngOnInit() {
   }
@@ -30,15 +30,16 @@ export class TrainDayTableComponent implements OnInit, OnChanges {
   }
 
   onDeleteClick(exercise: Exercise){
-    this.exerciseDeleted.emit(exercise);
+    this.trainDaysService.deleteExercise(this.trainDayId, exercise);
   }
 
   onEditClick(index: number){
     this.exerciseEditIndex = index;
   }
 
-  onConfirmClick(){
+  onConfirmClick(exercise: Exercise){
     this.exerciseEditIndex = -1;
+    this.trainDaysService.editExercise(this.trainDayId, exercise);
   }
 
 }

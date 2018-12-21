@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Exercise } from '../../exercise';
-import { TrainDayService } from 'src/app/services/train-day.service';
+import { TrainDaysService } from 'src/app/day-list/train-days.service';
 
 @Component({
   selector: 'app-add-exercise',
@@ -17,9 +17,9 @@ export class AddExerciseComponent implements OnInit {
   @ViewChild('repsNumberMax') repsNumberMaxInput : ElementRef;
   @ViewChild('weightInput') weightInput : ElementRef;
 
-  @Output() exerciseAdded : EventEmitter<void> = new EventEmitter<void>();
+  @Output() exerciseAdded : EventEmitter<Exercise> = new EventEmitter<Exercise>();
 
-  constructor(private trainDayService: TrainDayService) { }
+  constructor(private trainDaysService: TrainDaysService) { }
 
   ngOnInit() {
   }
@@ -35,8 +35,8 @@ export class AddExerciseComponent implements OnInit {
       this.weightInput.nativeElement.value
     );
 
-    this.trainDayService.addExercise(this.trainDayId, exercise);
-    this.exerciseAdded.emit();
+    this.trainDaysService.addExercise(this.trainDayId, exercise);
+    this.exerciseAdded.emit(exercise);
   }
 
 }
