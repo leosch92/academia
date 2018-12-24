@@ -1,37 +1,39 @@
-<div class="row" style="margin-bottom: 1em;">
-  <div class="col-3">
-    Semanas de treino completadas:
-  </div>
-
-  <div class="col-8">
-    <div class="row justify-content-start">
-      <div 
-        class="col-1" 
-        *ngFor="let week of totalWeeks"
-      >
-        <a href="#/" (click)="onToggleWeekCompleted(week)" class="icon">
-          <del *ngIf="completedWeeks.includes(week); else notCompleted">{{ week }}</del>
-          <ng-template #notCompleted> 
-              {{ week }}
-          </ng-template>
+<div class="container">
+  <div class="row" style="margin-bottom: 1em;">
+      <div class="col-3">
+        Semanas de treino completadas:
+      </div>
+    
+      <div class="col-8">
+        <div class="row justify-content-start">
+          <div 
+            class="col-1" 
+            *ngFor="let week of totalWeeks"
+          >
+            <a (click)="onToggleWeekCompleted(week)" class="icon">
+              <del *ngIf="completedWeeks.includes(week); else notCompleted">{{ week }}</del>
+              <ng-template #notCompleted> 
+                  {{ week }}
+              </ng-template>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-1">
+        <a title="Add week" (click)="onAddWeek()" class="icon">
+          <fa-icon [icon]="faPlusCircle"></fa-icon>
+        </a>
+        <a 
+          title="Remove week" 
+          (click)="onRemoveWeek()" 
+          class="icon"
+          *ngIf="numberOfTotalWeeks != 0"
+        >
+          <fa-icon [icon]="faMinusCircle"></fa-icon>
         </a>
       </div>
+    
     </div>
-  </div>
-  
-  <div class="col-1">
-    <a href="#/" title="Add week" (click)="onAddWeek()" class="icon">
-      <fa-icon [icon]="faPlusCircle"></fa-icon>
-    </a>
-    <a 
-      href="#/" 
-      title="Remove week" 
-      (click)="onRemoveWeek()" 
-      class="icon"
-      *ngIf="numberOfTotalWeeks != 0"
-    >
-      <fa-icon [icon]="faMinusCircle"></fa-icon>
-    </a>
-  </div>
-
 </div>
+

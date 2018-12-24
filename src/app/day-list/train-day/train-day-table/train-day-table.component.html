@@ -38,20 +38,18 @@
           <td style="width: 5em; text-align: center">
               <ng-container *ngIf="i !== exerciseEditIndex; else confirm">
                   <a 
-                      href="#/" 
-                      title="Deletar" 
-                      (click)="onDeleteClick(exercise)" 
-                      class="icon" 
-                      style="margin-right: 0.6em"
+                    title="Deletar" 
+                    (click)="onDeleteClick(exercise)"
+                    style="margin-right: 0.6em"
                   >
                       <fa-icon [icon]="faTrash"></fa-icon>
                   </a>
-                  <a href="#/" title="Editar" (click)="onEditClick(i)" class="icon">
+                  <a title="Editar" (click)="onEditClick(i)">
                       <fa-icon [icon]="faEdit"></fa-icon>
                   </a>
               </ng-container>
               <ng-template #confirm>
-                  <a href="#/" title="Confirmar edição" (click)="onConfirmClick(exercise)" class="icon">
+                  <a title="Confirmar edição" (click)="onConfirmClick(exercise)">
                       <fa-icon class="fa-2x" [icon]="faCheckSquare"></fa-icon>
                   </a>
               </ng-template>

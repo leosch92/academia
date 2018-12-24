@@ -1,5 +1,8 @@
+a {
+    cursor: pointer;
+}
+
 .icon {
-    color: gray;
     margin-left: 0.5em;
     float: right;
 }
