@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faPlusSquare, IconDefinition, faSave } from '@fortawesome/free-solid-svg-icons';
-import { TrainDaysService } from 'src/app/day-list/train-days.service';
+import { TrainDaysService } from '../../train-days.service';
 
 @Component({
   selector: 'app-train-day-options',

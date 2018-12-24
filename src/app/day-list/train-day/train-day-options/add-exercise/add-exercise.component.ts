@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Exercise } from '../../exercise';
-import { TrainDaysService } from 'src/app/day-list/train-days.service';
+import { TrainDaysService } from '../../../train-days.service';
 
 @Component({
   selector: 'app-add-exercise',

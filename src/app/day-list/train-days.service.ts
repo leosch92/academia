@@ -1,6 +1,6 @@
 import { TrainDay } from "../shared/train-day.model";
 import { Exercise } from "./train-day/exercise";
-import { cloneDeep } from 'node_modules/lodash';
+import { cloneDeep } from 'lodash';
 import { EventEmitter } from "@angular/core";
 
 export class TrainDaysService{
@@ -13,10 +13,25 @@ export class TrainDaysService{
 
     constructor(){
       this.trainDays = JSON.parse(localStorage.getItem(this.trainDaysKeyJSON));
+      if (this.trainDays == null){
+        this.trainDays = this.getEmptyTrainDays();
+      }
     }
 
     getTrainDays(): TrainDay[] {
       return cloneDeep(this.trainDays);
+    }
+
+    private getEmptyTrainDays(): TrainDay[] {
+      return [
+        new TrainDay('Segunda', [], []),
+        new TrainDay('Terça', [], []),
+        new TrainDay('Quarta', [], []),
+        new TrainDay('Quinta', [], []),
+        new TrainDay('Sexta', [], []),
+        new TrainDay('Sábado', [], []),
+        new TrainDay('Domingo', [], [])
+      ];
     }
 
     addExercise(trainDayId: number, exercise: Exercise): void {

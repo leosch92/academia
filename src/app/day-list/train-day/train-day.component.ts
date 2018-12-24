@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TrainDay } from 'src/app/shared/train-day.model';
-import { TrainDaysService } from 'src/app/day-list/train-days.service';
+import { TrainDay } from '../../shared/train-day.model';
+import { TrainDaysService } from '../train-days.service';
 import { Exercise } from './exercise';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { Groupings } from 'src/app/shared/constants/groupings.constant';
+import { Groupings } from '../../shared/constants/groupings.constant';
 
 
 @Component({
