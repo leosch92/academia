@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IconDefinition, faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import { ArrayUtil } from '../utils/array.util'
+import { CompletedWeeksService } from './completed-weeks.service';
 
 @Component({
   selector: 'app-completed-weeks',
@@ -9,35 +9,38 @@ import { ArrayUtil } from '../utils/array.util'
 })
 export class CompletedWeeksComponent implements OnInit {
 
-  totalWeeks: number[] = [];
-  numberOfTotalWeeks = 4;
-  completedWeeks: number[] = [1, 2, 3, 4, 5, 6];
+  totalWeeks: number[];
+  completedWeeks: number[];
   faPlusCircle: IconDefinition = faPlusCircle;
   faMinusCircle: IconDefinition = faMinusCircle;
 
-  constructor() { }
+  constructor(private completedWeeksService: CompletedWeeksService) { }
 
   ngOnInit() {
-    for (let i = 1; i <= this.numberOfTotalWeeks; i++){
-      this.totalWeeks.push(i);
-    }
+    this.totalWeeks = this.completedWeeksService.getTotalWeeks();
+    this.completedWeeks = this.completedWeeksService.getCompletedWeeks();
+    this.completedWeeksService.totalWeeksChanged.subscribe(
+      (totalWeeks: number[]) => { this.totalWeeks = totalWeeks }
+    )
+
+    this.completedWeeksService.completedWeeksChanged.subscribe(
+      (completedWeeks: number[]) => { this.completedWeeks = completedWeeks }
+    )
   }
 
   onAddWeek() {
-    this.totalWeeks.push(++this.numberOfTotalWeeks);
+    this.completedWeeksService.addToTotalWeeks();
   }
 
   onRemoveWeek() {
-    ArrayUtil.remove(this.completedWeeks, this.numberOfTotalWeeks);
-    this.numberOfTotalWeeks--;
-    this.totalWeeks.pop();
+    this.completedWeeksService.removeFromTotalWeeks();
   }
 
   onToggleWeekCompleted(week: number) {
-    if (this.completedWeeks.some(w => w == week)){
-      ArrayUtil.remove(this.completedWeeks, week);
+    if (this.completedWeeks.some(w => w === week)){
+      this.completedWeeksService.addToCompletedWeeks(week);
     } else {
-      this.completedWeeks.push(week);
+      this.completedWeeksService.removeFromCompletedWeeks(week);
     }
   }
 
