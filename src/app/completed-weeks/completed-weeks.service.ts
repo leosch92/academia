@@ -8,8 +8,8 @@ export class CompletedWeeksService{
 
   totalWeeks: number[];
   completedWeeks: number[];
-  totalWeeksKeyJSON: string = 'totalWeeks';
-  completedWeeksKeyJSON: string = 'completedWeeks';
+  readonly totalWeeksKeyJSON: string = 'totalWeeks';
+  readonly completedWeeksKeyJSON: string = 'completedWeeks';
   totalWeeksChanged: EventEmitter<number[]> = new EventEmitter<number[]>();
   completedWeeksChanged: EventEmitter<number[]> = new EventEmitter<number[]>();
 
@@ -54,4 +54,8 @@ export class CompletedWeeksService{
     this.completedWeeksChanged.emit(this.getCompletedWeeks());
   }
 
+  save(){
+    localStorage.setItem(this.totalWeeksKeyJSON, JSON.stringify(this.totalWeeks));
+    localStorage.setItem(this.completedWeeksKeyJSON, JSON.stringify(this.completedWeeks));
+  }
 }

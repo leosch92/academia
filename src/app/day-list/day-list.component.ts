@@ -20,7 +20,7 @@ export class DayListComponent implements OnInit{
   }
 
   onDayClick(trainDay: TrainDay) {
-    this.shownTrainDay = trainDay;
+    this.shownTrainDay = (this.shownTrainDay === trainDay)? undefined : trainDay;
   }
 
   isTrainDayFilled(trainDay: TrainDay): boolean{

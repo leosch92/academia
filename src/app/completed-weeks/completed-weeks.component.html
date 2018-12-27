@@ -1,9 +1,19 @@
 <div class="container">
-  <div class="row" style="margin-bottom: 1em;">
+
+  <div class="row">
+    <div class="col-1 ml-auto">
+      <a title="Salvar" (click)="onSaveClick()" class="icon float-right">
+        <fa-icon class="fa-3x" [icon]="faSave"></fa-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="card" style="padding: 1.5em;">
+    <div class="row">
       <div class="col-3">
         Semanas de treino completadas:
       </div>
-    
+      
       <div class="col-8">
         <div class="row justify-content-start">
           <div 
@@ -19,13 +29,13 @@
           </div>
         </div>
       </div>
-      
+        
       <div class="col-1">
-        <a title="Add week" (click)="onAddWeek()" class="icon">
+        <a title="Adicionar semana" (click)="onAddWeek()" class="icon">
           <fa-icon [icon]="faPlusCircle"></fa-icon>
         </a>
         <a 
-          title="Remove week" 
+          title="Remover semana" 
           (click)="onRemoveWeek()" 
           class="icon"
           *ngIf="numberOfTotalWeeks != 0"
@@ -33,7 +43,8 @@
           <fa-icon [icon]="faMinusCircle"></fa-icon>
         </a>
       </div>
-    
+
     </div>
+  </div>
 </div>
 

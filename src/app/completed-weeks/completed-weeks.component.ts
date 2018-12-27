@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IconDefinition, faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faPlusCircle, faMinusCircle, faSave } from '@fortawesome/free-solid-svg-icons';
 import { CompletedWeeksService } from './completed-weeks.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class CompletedWeeksComponent implements OnInit {
   completedWeeks: number[];
   faPlusCircle: IconDefinition = faPlusCircle;
   faMinusCircle: IconDefinition = faMinusCircle;
+  faSave: IconDefinition = faSave;
 
   constructor(private completedWeeksService: CompletedWeeksService) { }
 
@@ -42,6 +43,10 @@ export class CompletedWeeksComponent implements OnInit {
     } else {
       this.completedWeeksService.removeFromCompletedWeeks(week);
     }
+  }
+
+  onSaveClick(): void {
+    this.completedWeeksService.save();
   }
 
 }
