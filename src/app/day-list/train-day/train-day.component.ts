@@ -22,8 +22,8 @@ export class TrainDayComponent implements OnInit{
     this.initGroupings();
 
     this.trainDaysService.exerciseAdded.subscribe(
-      (newExercise: Exercise) => {
-        this.trainDay.exercises.push(newExercise);
+      (exercises: Exercise[]) => {
+        this.trainDay.exercises = exercises;
       }
     );
 
@@ -49,7 +49,7 @@ export class TrainDayComponent implements OnInit{
   }
 
   isWeekend(): boolean {
-    return this.trainDay.weekDay === 'Sábado' || this.trainDay.weekDay !== 'Domingo';
+    return this.trainDay.weekDay === 'Sábado' || this.trainDay.weekDay === 'Domingo';
   }
 
   onEditGroupings(event: any): void {

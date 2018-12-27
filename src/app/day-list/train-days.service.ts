@@ -2,12 +2,13 @@ import { TrainDay } from "../shared/train-day.model";
 import { Exercise } from "./train-day/exercise";
 import { cloneDeep } from 'lodash';
 import { EventEmitter } from "@angular/core";
+import { Guid } from "guid-typescript";
 
 export class TrainDaysService{
 
     readonly trainDaysKeyJSON: string = 'trainDays';
     private trainDays: TrainDay[] = [];
-    exerciseAdded: EventEmitter<Exercise> = new EventEmitter<Exercise>();
+    exerciseAdded: EventEmitter<Exercise[]> = new EventEmitter<Exercise[]>();
     exerciseDeleted: EventEmitter<Exercise[]> = new EventEmitter<Exercise[]>();
     exerciseEdited: EventEmitter<Exercise[]> = new EventEmitter<Exercise[]>();
 
@@ -19,7 +20,7 @@ export class TrainDaysService{
     }
 
     getTrainDays(): TrainDay[] {
-      return cloneDeep(this.trainDays);
+      return this.trainDays.slice();
     }
 
     private getEmptyTrainDays(): TrainDay[] {
@@ -34,22 +35,23 @@ export class TrainDaysService{
       ];
     }
 
-    addExercise(trainDayId: number, exercise: Exercise): void {
-        this.trainDays.find( td => td.id === trainDayId).exercises.push(exercise);
-        this.exerciseAdded.emit(exercise);
+    addExercise(trainDayId: Guid, exercise: Exercise): void {
+        let exercises = this.trainDays.find( td => td.id.equals(trainDayId)).exercises;
+        exercises.push(exercise);
+        this.exerciseAdded.emit(exercises);
     }
 
-    deleteExercise(trainDayId: number, exercise: Exercise): void {
+    deleteExercise(trainDayId: Guid, exercise: Exercise): void {
       this.updateExercise(trainDayId, exercise, 'delete');
     }
 
-    editExercise(trainDayId: number, editedExercise: Exercise): void {
+    editExercise(trainDayId: Guid, editedExercise: Exercise): void {
       this.updateExercise(trainDayId, editedExercise, 'edit');
     }
 
-    updateExercise(trainDayId: number, updatedExercise: Exercise, operation: string){
-      let exercises = this.trainDays.find(td => td.id === trainDayId).exercises;
-      let exercise = exercises.find(ex => ex.id === updatedExercise.id);
+    updateExercise(trainDayId: Guid, updatedExercise: Exercise, operation: string){
+      let exercises = this.trainDays.find(td => td.id.equals(trainDayId)).exercises;
+      let exercise = exercises.find(ex => ex.id.equals(updatedExercise.id));
       const index: number = exercises.indexOf(exercise);
       if (index !== -1){
         if (operation === 'edit'){
@@ -62,8 +64,8 @@ export class TrainDaysService{
       }
     }
 
-    changeGroupings(trainDayId: number, newGroupings: string[]){
-      this.trainDays.find(td => td.id === trainDayId).groupings = newGroupings; 
+    changeGroupings(trainDayId: Guid, newGroupings: string[]){
+      this.trainDays.find(td => td.id.equals(trainDayId)).groupings = newGroupings; 
     }
 
     save(){

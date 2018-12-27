@@ -6,7 +6,7 @@ export const Groupings: string[] = [
     'Pernas',
     'Ombros',
     'Trapézio',
-    'Abdominal',
+    'Abdômen',
     'Lombar',
     'Antebraço'
 ]

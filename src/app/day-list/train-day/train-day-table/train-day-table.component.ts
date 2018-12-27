@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitte
 import { IconDefinition, faTrash, faEdit, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { Exercise } from '../exercise';
 import { TrainDaysService } from '../../train-days.service';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-train-day-table',
@@ -10,7 +11,7 @@ import { TrainDaysService } from '../../train-days.service';
 })
 export class TrainDayTableComponent implements OnInit, OnChanges {
 
-  @Input() trainDayId: number;
+  @Input() trainDayId: Guid;
   @Input() exercises: Exercise[];
 
   readonly faTrash: IconDefinition = faTrash;

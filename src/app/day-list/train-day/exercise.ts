@@ -1,17 +1,17 @@
 import { Repetitions } from "./repetitions";
 import { format } from "util";
+import { Guid } from "guid-typescript";
 
 export class Exercise {
 
-    private static _id: number = 0;
-    id:  number;
+    id:  Guid;
     name: string;
     seriesQuantity: number;
     repetitions: Repetitions;
     weight: number = 0;
 
     constructor(name: string, seriesQuantity: number, repetitions: Repetitions, weight?: number){
-        this.id = ++Exercise._id;
+        this.id = Guid.create();
         this.name = name;
         this.seriesQuantity = seriesQuantity;
         this.repetitions = {
