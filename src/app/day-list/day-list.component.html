@@ -1,13 +1,12 @@
 <div class="container">
-    <div style="padding: auto;">
-        <div *ngFor="let trainDay of trainDays" class="day-box" (click)="onDayClick(trainDay)">
-            <div class="card" style="min-height: 13em">
-              <div class="card-header">{{ trainDay.weekDay }}</div>
-              <div class="card-body" style="padding-top: 0.6em">
+
+    <div class="card-deck">
+        <div class="card day-choose" *ngFor="let trainDay of trainDays" (click)="onDayClick(trainDay)">
+            <div class="card-header">{{ trainDay.weekDay }}</div>
+            <div class="card-body">
                 <span *ngFor="let grouping of trainDay.groupings"> {{ grouping }} <br></span>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
     
     <ng-container *ngIf="shownTrainDay">

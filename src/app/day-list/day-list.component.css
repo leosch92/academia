@@ -1,6 +1,4 @@
-.day-box {
-    width: 13%; 
-    display: inline-block; 
-    margin-right: 1%;
+.day-choose {
     cursor: pointer;
+    min-height: 10em;
 }
