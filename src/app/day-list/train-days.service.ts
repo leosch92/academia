@@ -1,8 +1,14 @@
 import { TrainDay } from "../shared/train-day.model";
 import { Exercise } from "./train-day/exercise";
-import { cloneDeep } from 'lodash';
 import { EventEmitter } from "@angular/core";
 import { Guid } from "guid-typescript";
+
+const trainDaysReviver = (key: string, value: any) => {
+  if (key === 'id'){
+    return Guid.parse(value);
+  }
+  return value;
+}
 
 export class TrainDaysService{
 
@@ -13,7 +19,7 @@ export class TrainDaysService{
     exerciseEdited: EventEmitter<Exercise[]> = new EventEmitter<Exercise[]>();
 
     constructor(){
-      this.trainDays = JSON.parse(localStorage.getItem(this.trainDaysKeyJSON));
+      this.trainDays = JSON.parse(localStorage.getItem(this.trainDaysKeyJSON), trainDaysReviver);
       if (this.trainDays == null){
         this.trainDays = this.getEmptyTrainDays();
       }
