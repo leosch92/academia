@@ -10,7 +10,7 @@ import { Guid } from 'guid-typescript';
 })
 export class AddExerciseComponent implements OnInit {
 
-  @Input() trainDayId: Guid;
+  @Input() trainDayId: string;
 
   @ViewChild('exerciseInput') exerciseInput : ElementRef;
   @ViewChild('seriesNumberInput') seriesNumberInput : ElementRef;
@@ -24,15 +24,16 @@ export class AddExerciseComponent implements OnInit {
   }
 
   onAddItem(): void{
-    let exercise = new Exercise(
-      this.exerciseInput.nativeElement.value,
-      this.seriesNumberInput.nativeElement.value,
-      {
+    let exercise: Exercise = {
+      id: Guid.raw(),
+      name: this.exerciseInput.nativeElement.value,
+      seriesQuantity: this.seriesNumberInput.nativeElement.value,
+      repetitions: {
         min: this.repsNumberMinInput.nativeElement.value,
         max: this.repsNumberMaxInput.nativeElement.value
       },
-      this.weightInput.nativeElement.value
-    );
+      weight: this.weightInput.nativeElement.value
+    }
 
     this.trainDaysService.addExercise(this.trainDayId, exercise);
   }

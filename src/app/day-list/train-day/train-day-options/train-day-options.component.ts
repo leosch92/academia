@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faPlusSquare, IconDefinition, faSave } from '@fortawesome/free-solid-svg-icons';
 import { TrainDaysService } from '../../train-days.service';
-import { Guid } from 'guid-typescript';
 import { Exercise } from '../exercise';
 
 @Component({
@@ -11,7 +10,7 @@ import { Exercise } from '../exercise';
 })
 export class TrainDayOptionsComponent implements OnInit {
 
-  @Input() trainDayId: Guid;
+  @Input() trainDayId: string;
 
   faPlusSquare : IconDefinition = faPlusSquare;
   faSave: IconDefinition = faSave;
