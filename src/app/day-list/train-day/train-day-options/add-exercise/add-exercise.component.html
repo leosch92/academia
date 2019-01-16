@@ -1,55 +1,72 @@
-<form class="card" style="padding: 1.5em; margin-bottom: 2em;">
+<form class="card" style="padding: 1.5em; margin-bottom: 2em;" (ngSubmit)="onAddItem(f)" #f="ngForm">
 
     <div class="row">
       <div class="col">
-          <label for="exerciseInput">Exercício</label>
-          <input #exerciseInput class="full-input" type="text">
+          <label for="name">Exercício</label>
+          <input 
+            id="name"
+            class="full-input" 
+            type="text"
+            name="name"
+            ngModel>
       </div>
       <div class="col">
-          <label for="seriesNumberInput">Nº. Séries</label>
-          <input #seriesNumberInput class="full-input" type="text" maxlength="2">
+          <label for="seriesNumber">Nº. Séries</label>
+          <input 
+            id="seriesNumber"
+            class="full-input" 
+            type="text" 
+            maxlength="2"
+            name="seriesNumber"
+            ngModel>
       </div>
     </div>
     
     <div class="row">
       <div class="col">
-          <label for="repsNumber">Nº Repetições</label>
+        <fieldset>
+          <legend style="font-size: 1.0rem">Nº Repetições</legend>
           <div class="row">
               <div class="col">
-                <input 
-                  #repsNumber 
-                  #repsNumberMin 
+                <input
                   type="text" 
                   maxlength="2" 
                   class="full-input"
                   placeholder="Mínimo"
-                >
+                  name="minRepsNumber"
+                  ngModel>
               </div>
               <div class="col">
-                <input 
-                  #repsNumber 
-                  #repsNumberMax 
+                <input
                   type="text" 
                   maxlength="2" 
                   class="full-input"
                   placeholder="Máximo"
-                >
+                  name="maxRepsNumber"
+                  ngModel>
               </div>
           </div>
+        </fieldset>
       </div>
       <div class="col">
         <label for="weightInput">Nº. Peso</label>
-        <input #weightInput type="text" maxlength="3" class="full-input">
+        <input 
+          id="weight"
+          type="text" 
+          maxlength="3" 
+          class="full-input"
+          name="weight"
+          ngModel>
       </div>
     </div>
 
     <div class="row">
       <button 
         class="btn" 
-        style="font-size: 18px; margin: auto;" 
-        (click)="onAddItem()"
-        type="button"
-      >Adicionar</button>
+        style="font-size: 18px; margin: auto;"
+        type="submit">
+        Adicionar
+      </button>
     </div>
 
 </form>

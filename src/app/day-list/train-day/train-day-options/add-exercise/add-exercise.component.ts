@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { Exercise } from '../../exercise';
 import { TrainDaysService } from '../../../train-days.service';
 import { Guid } from 'guid-typescript';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-exercise',
@@ -12,27 +13,21 @@ export class AddExerciseComponent implements OnInit {
 
   @Input() trainDayId: string;
 
-  @ViewChild('exerciseInput') exerciseInput : ElementRef;
-  @ViewChild('seriesNumberInput') seriesNumberInput : ElementRef;
-  @ViewChild('repsNumberMin') repsNumberMinInput : ElementRef;
-  @ViewChild('repsNumberMax') repsNumberMaxInput : ElementRef;
-  @ViewChild('weightInput') weightInput : ElementRef;
-
   constructor(private trainDaysService: TrainDaysService) { }
 
   ngOnInit() {
   }
 
-  onAddItem(): void{
+  onAddItem(form: NgForm): void{
     let exercise: Exercise = {
       id: Guid.raw(),
-      name: this.exerciseInput.nativeElement.value,
-      seriesQuantity: this.seriesNumberInput.nativeElement.value,
+      name: form.value.name,
+      seriesQuantity: form.value.seriesNumber,
       repetitions: {
-        min: this.repsNumberMinInput.nativeElement.value,
-        max: this.repsNumberMaxInput.nativeElement.value
+        min: form.value.minRepsNumber,
+        max: form.value.maxRepsNumber
       },
-      weight: this.weightInput.nativeElement.value
+      weight: form.value.weight
     }
 
     this.trainDaysService.addExercise(this.trainDayId, exercise);
